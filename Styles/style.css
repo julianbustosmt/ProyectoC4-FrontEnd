@@ -1,0 +1,110 @@
+.form-register{
+    width: 400px;
+    background-color: #212529;
+    padding: 30px;
+    margin-top: 200px;
+    color: white ;
+    font-family: "calibri";
+    text-align: center;
+    box-shadow: 7px 13px 37px #000;;
+}
+
+body{
+    background-image: url(/Imagen/fondo1.jpg) ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.form-register h4{
+    font-size: 30px;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+.control{
+    width: 100%;
+    background-color: #212529;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #dee2e6;
+    font-size: 18px;
+    color: white;
+    
+}
+
+
+.form-registro{
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    margin: 15px;
+}
+
+.form-register a{
+    color: white;
+    text-decoration: none;
+
+}
+.form-register a:hover{
+    text-decoration: underline;
+}
+
+.button{
+    width: 100%;
+    background-color: #adb5bd ;
+    border: none;
+    padding: 5px;
+    font-size: 18px;
+    margin-top: 15px;
+    color: #f8f9fa;
+    
+}
+
+.button:hover{
+
+    background-color: #f8f9fa ;
+    color: #adb5bd;
+}
+
+.form-error{
+    font-size: 13px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    display: none;
+}
+
+.form-error-active{
+    display: block;
+}
+
+.group-input {
+    position: relative;
+}
+
+.group-input i{
+    position:absolute;
+    right: 12px;
+    top: 15px;
+    z-index: 100;
+    font-size: 16px;
+    opacity: 0;
+}
+
+.form-group-correcto .group-input i{
+    color: #1ed12d;
+    opacity: 1;
+}
+
+.form-group-incorrecto .control{
+    border: 1px solid #bb2929;
+}
+
+.form-group-incorrecto .control:focus-visible{
+    border: 1px solid #bb2929;
+}
+
+
+.form-group-incorrecto .group-input i{
+    color: #bb2929;
+    opacity: 1;
+}
