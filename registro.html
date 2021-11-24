@@ -16,6 +16,15 @@
 </head>
 
 <body>
+    <div id="myToast" class="toast position-fixed top-0 end-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <img src="" class="rounded me-2" alt="" />
+            <strong class="me-auto" id="toast-header">Bootstrap</strong>
+            <small class="text-muted" id="toast-small">Algo salio mal</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" id="toast-body">Hello, world! This is ba toast message.</div>
+    </div>
     <div class="container">
         <form class="col-4 offset-md-4 form-register" id="form">
             <h4>Registro</h4>
@@ -40,28 +49,20 @@
                 </div>
                 <p class="form-error">La contraseña debe tener de 4 a 12 digitos.</p>
             </div>
-            <div class="form-group" id="group-conf-password">
+            <div class="form-group" id="group-confpassword">
                 <div class="group-input"> 
                     <input type="password" class="control" name="txtConfirmPassword" id="txtConfirmPassword" placeholder="Confirme su contraseña" />
                     <i class="far fa-times-circle"></i>
                 </div>
                 <p class="form-error">Ambas contraseñas deben ser iguales.</p>
             </div>
-            <button type="submit" class="button">Iniciar Sesion</button>
+            <button type="button" class="button" onclick="registro()">Registrase</button>
             <p class="form-registro">
                 ¿Ya tienes cuenta? Accede <a href="index.html">aqui</a>
             </p>
+            
         </form>
-
-        <div id="myToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <img src="" class="rounded me-2" alt="" />
-                <strong class="me-auto" id="toast-header">Bootstrap</strong>
-                <small class="text-muted">11 mins ago</small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body" id="toast-body">Hello, world! This is ba toast message.</div>
-        </div>
+        
     </div>
 </body>
 <script src="JavaScript/appRegistro.js"></script>

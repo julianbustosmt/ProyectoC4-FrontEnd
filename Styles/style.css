@@ -10,7 +10,7 @@
 }
 
 body{
-    background-image: url(/Imagen/fondo1.jpg) ;
+    background-image: url(/Reto1/Imagen/fondo1.jpg) ;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -31,7 +31,6 @@ body{
     color: white;
     
 }
-
 
 .form-registro{
     height: 40px;
