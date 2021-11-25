@@ -1,6 +1,7 @@
 const formulario = document.getElementById("form");
 const inputs = document.querySelectorAll("#form input");
 const urlbase = "http://localhost:8080/api/user";
+const urlprod = "http://132.145.103.244:8080/api/user"
 
 const expresiones = {
     usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
@@ -102,7 +103,7 @@ const registro = () => {
             password:password,
         }
         $.ajax({
-            url: `${urlbase}/new`,
+            url: `${urlprod}/new`,
             type: "POST",
             dataType: 'json',
             headers: {
@@ -127,31 +128,4 @@ const registro = () => {
     }
 };
 
-const acceder = () => {
-    if(campos.password && campos.email){
-        const email = $("#txtemail").val();
-        const password = $("#txtpassword").val();
 
-        $.ajax({
-            url: `${urlbase}/${email}/${password}`,
-            type: "GET",
-            dataType: 'json',
-            succes: function(response){
-                if (response.id === null){
-                    showToast('Error', 'Usuario o contraseña no coinciden', 'Algo salio mal', true)
-                }else{
-                    form.reset();
-                    document.querySelectorAll('.form-group-correcto').forEach((icono) =>{
-                        icono.classList.remove('form-group-correcto');
-                    });
-                    showToast('Validacion exitosa', 'En 1 segundo lo redireccionarmos');
-                    setTimeout(()=>{
-                        window.location.href = 'registro.html';
-                    }, 5000);
-                }
-            }
-        });
-    }else{
-        showToast('Error', 'Por favor diligencia correctamente el formulario',"Algo salio mal", true);
-    }
-}
