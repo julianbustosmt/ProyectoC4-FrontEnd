@@ -15,6 +15,7 @@ body{
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+
 .form-register h4{
     font-size: 30px;
     margin-bottom: 25px;
@@ -96,6 +97,7 @@ body{
 
 .form-group-incorrecto .control{
     border: 1px solid #bb2929;
+    margin-bottom: 0px;
 }
 
 .form-group-incorrecto .control:focus-visible{

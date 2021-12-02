@@ -1,0 +1,99 @@
+.form-register {
+  width: 95%;
+  margin: auto;
+  margin-top: 20px;
+  padding: 35px 20px;
+  border: solid 1px #f8f9fa;
+  box-shadow: 7px 7px 25px #6c757d;
+  background-color: #f8f9fa;
+  color: #212529;
+  border-radius: 0px;
+  font-family: "calibri";
+}
+
+.form-register h1 {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+body {
+  background-color: #ced4da;
+}
+
+.control {
+  background-color: #e9ecef;
+  padding: 5px;
+  margin-bottom: 1px;
+  border: 1px solid #dee2e6;
+  font-size: 17px;
+  color: #212529;
+}
+
+.control-lb {
+  margin-top: 5px;
+  font-family: "calibri";
+  font-weight: bold;
+}
+
+.form-error {
+  font-size: 13px;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  display: none;
+  color: #cb0b0a;
+}
+
+.form-error-active {
+  display: block;
+}
+
+.group-input {
+  position: relative;
+}
+
+.group-input i {
+  position: absolute;
+  right: 25px;
+  top: 38px;
+  z-index: 100;
+  font-size: 16px;
+  opacity: 0;
+}
+
+.form-group-incorrecto .control {
+  border: 1px solid #cb0b0a;
+}
+
+.form-group-incorrecto .control:focus-visible {
+  border: 1px solid #cb0b0a;
+}
+
+.form-group-correcto .group-input i {
+  color: #70e000;
+  opacity: 1;
+}
+
+.form-group-incorrecto .group-input i {
+  color: #cb0b0a;
+  opacity: 1;
+}
+
+.button-group {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.button-group button {
+  width: 180px;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px;
+  margin: 10px 10px 0px;
+  border: none;
+  border-radius: 0px;
+  background-color: #212529;
+}
+
+.button-group button:hover {
+  background-color: #343a40;
+}

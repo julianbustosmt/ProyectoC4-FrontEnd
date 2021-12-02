@@ -84,15 +84,17 @@ const showToast = (toastheader, toastbody, toastsmall,error) => {
     if (error) {
         //Como poner una imagen en el toast?
         $("#myToast").addClass("toast bg-warning")
+        $("#myToast").removeClass("toast bg-success")
     } else {
         $("#myToast").addClass("toast bg-success")
+        $("#myToast").removeClass("toast bg-warning")
     }
     $("#myToast").toast("show");
 };
 
 const registro = () => {
 
-    if(campos.name && campos.password && campos.email){
+    if(campos.name && campos.password && campos.email && campos.name){
         const name = $("#txtname").val();
         const email = $("#txtemail").val();
         const password = $("#txtpassword").val();
