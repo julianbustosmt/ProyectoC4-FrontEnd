@@ -11,8 +11,8 @@
     <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
-<body>
-    <div class="container">
+<body id="body" class="background-image">
+    <div class="container-fluid">
         <div id="myToast" class="toast position-fixed top-0 end-0" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
                 <img src="" class="rounded me-2" alt="" />
@@ -22,29 +22,33 @@
             </div>
             <div class="toast-body" id="toast-body">Hello, world! This is ba toast message.</div>
         </div>
-        <form class="col-4 offset-md-4 form-register" id="form">
-            <h4>Acceder</h4>
-            <div class="form-group" id="group-email">
-                <div class="group-input">
-                    <input type="email" class="control" name="txtemail" id="txtemail" placeholder="Ingrese su correo">
+        <div class="row">
+            <form class="col-4 offset-md-4 form-register" id="form">
+                <h4>Acceder</h4>
+                <div class="form-group" id="group-email">
+                    <div class="group-input">
+                        <input type="email" class="control" name="txtemail" id="txtemail" placeholder="Ingrese su correo">
+                        <i class="far fa-times-circle"></i>
+                    </div>
+                    <p class="form-error">El correo ingresado no es valido.</p>
+                </div>
+                <div class="form-group" id="group-password">
+                    <div class="group-input">
+                    <input type="password" class="control" name="txtpassword" id="txtpassword" placeholder="Ingrese su contraseña" />
                     <i class="far fa-times-circle"></i>
+                    </div>
+                    <p class="form-error">La contraseña debe tener de 4 a 12 digitos.</p>
                 </div>
-                <p class="form-error">El correo ingresado no es valido.</p>
-            </div>
-            <div class="form-group" id="group-password">
-                <div class="group-input">
-                <input type="password" class="control" name="txtpassword" id="txtpassword" placeholder="Ingrese su contraseña" />
-                <i class="far fa-times-circle"></i>
-                </div>
-                <p class="form-error">La contraseña debe tener de 4 a 12 digitos.</p>
-            </div>
-            <button type="button" class="button" onclick="acceder()">Acceder</button>
-            <p class="form-registro">
-                ¿No tienes cuenta? Comunicate con el administrador <a href="registro.html">aqui</a>
-            </p>
-        </form>
+                <button type="button" class="button" onclick="acceder()">Acceder</button>
+                <p class="form-registro">
+                    ¿No tienes cuenta? Comunicate con el administrador <a href="registro.html">aqui</a>
+                </p>
+            </form>
+        </div>
+            
+        
 
     </div>
 </body>
-<script src="JavaScript/appAcceso.js" type="module"></script>
+<script src="JavaScript/appAcceso.js"></script>
 </html> 

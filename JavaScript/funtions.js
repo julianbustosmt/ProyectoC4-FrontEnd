@@ -1,4 +1,4 @@
-export const validarCampo = (expresion, input, campo) => {
+export const validarCampo = (expresion, input, campos, campo) => {
     if (expresion.test(input.value)) {
         $(`#group-${campo}`).removeClass("form-group-incorrecto");
         $(`#group-${campo}`).addClass("form-group-correcto");

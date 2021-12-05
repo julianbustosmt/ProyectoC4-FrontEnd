@@ -2,14 +2,16 @@
     width: 400px;
     background-color: #212529;
     padding: 30px;
-    margin-top: 200px;
+    margin: auto;
+    margin-top: 150px;
     color: white ;
     font-family: "calibri";
     text-align: center;
-    box-shadow: 7px 13px 37px #000;;
+    box-shadow: 7px 13px 37px #000;
 }
 
-body{
+
+.background-image{
     background-image: url(../Imagen/fondo1.jpg) ;
     background-size: cover;
     background-repeat: no-repeat;
