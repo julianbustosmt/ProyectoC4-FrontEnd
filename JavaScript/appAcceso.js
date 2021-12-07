@@ -76,14 +76,15 @@ const acceder = () => {
         console.log(password);
 
         $.ajax({
-            url: `${urlprod}/${email}/${password}`,
+            url: `${urlbase}/${email}/${password}`,
             type: "GET",
             dataType: 'json',
             headers: {
                 "Content-Type": "application/json"
             },
             success: function (response) {
-                if (response.id !== null) {
+                console.log(response);
+                if (response.id !== null && response.type == "admin") {
                     form.reset();
                     document.querySelectorAll('.form-group-correcto').forEach((icono) => {
                         icono.classList.remove('form-group-correcto');
@@ -95,7 +96,6 @@ const acceder = () => {
                 } else {
                     showToast('Error', 'Usuario o contraseña no coinciden', 'Algo salio mal', true);
                     setTimeout(() => {
-                        window.location.href = 'index.html';
                     }, 2000);
                 }
             },

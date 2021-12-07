@@ -1,3 +1,5 @@
+
+/*Secciones*/
 .form-register {
   width: 95%;
   margin: auto;
@@ -9,6 +11,7 @@
   color: #212529;
   border-radius: 0px;
   font-family: "calibri";
+  min-height: 300px;
 }
 
 .form-register h1 {
@@ -20,6 +23,13 @@ body {
   background-color: #ced4da;
 }
 
+/***********************************************/
+/*****************Forulario********************/
+/*Toast*/
+#mytoast{
+  position: static;
+}
+/*inputs*/
 .control {
   background-color: #e9ecef;
   padding: 5px;
@@ -29,60 +39,20 @@ body {
   color: #212529;
 }
 
+/*label*/
 .control-lb {
   margin-top: 5px;
   font-family: "calibri";
   font-weight: bold;
 }
 
-.form-error {
-  font-size: 13px;
-  margin-top: 0px;
-  margin-bottom: 5px;
-  display: none;
-  color: #cb0b0a;
-}
-
-.form-error-active {
-  display: block;
-}
-
-.group-input {
-  position: relative;
-}
-
-.group-input i {
-  position: absolute;
-  right: 25px;
-  top: 38px;
-  z-index: 100;
-  font-size: 16px;
-  opacity: 0;
-}
-
-.form-group-incorrecto .control {
-  border: 1px solid #cb0b0a;
-}
-
-.form-group-incorrecto .control:focus-visible {
-  border: 1px solid #cb0b0a;
-}
-
-.form-group-correcto .group-input i {
-  color: #70e000;
-  opacity: 1;
-}
-
-.form-group-incorrecto .group-input i {
-  color: #cb0b0a;
-  opacity: 1;
-}
-
+/*Div botones*/
 .button-group {
   text-align: center;
   padding-top: 10px;
 }
 
+/*Botones formulario*/
 .button-group button {
   width: 180px;
   font-size: 18px;
@@ -97,3 +67,133 @@ body {
 .button-group button:hover {
   background-color: #343a40;
 }
+/***********************************************/
+/***********************************************/
+
+/***********************************************/
+/*****************Validacion********************/
+
+/*Clase para los parrafos de error en la validacion de campos*/
+.form-error {
+  font-size: 13px;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  display: none;
+  color: #cb0b0a;
+}
+
+/*Clase que hace visible los parrafos de errror*/
+.form-error-active {
+  display: block;
+}
+
+/*Clase para controlar la posicion de los input con respecto a los iconos*/ 
+.group-input {
+ position: relative;
+}
+
+/*Clase que permite al icono ocupar siempre las misma posicion con respecto al input*/
+.group-input i {
+  position: absolute;
+  right: 25px;
+  top: 38px;
+  z-index: 100;
+  font-size: 16px;
+  opacity: 0;
+}
+
+.form-group-incorrecto .control {
+  border: 1px solid #cb0b0a;
+}
+
+.form-group-correcto .group-input i {
+  color: #70e000;
+  opacity: 1;
+}
+
+.form-group-incorrecto .group-input i {
+  color: #cb0b0a;
+  opacity: 1;
+}
+
+/**********************************************/
+
+/**********************************************/
+/*****************Tabla usuarios***************/
+table th, td{
+  text-align: center;
+  font-size: 18px;
+}
+
+@media (max-width: 55em) {
+  table {
+    width: 100%;
+  }
+  table tr{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #212529;
+    padding: 5px;
+    margin-bottom: 1em; 
+    margin-top: 1em;
+    font-family: "calibri";
+    /*box-shadow: 5px 7px 7px #6c757d;*/
+
+  }
+  table td{
+    display: flex;
+    border: none;
+    padding: auto;
+  }
+
+  table td[data-titulo]::before{
+    content: attr(data-titulo);
+    width: 80px;
+    font-weight: bold;
+    text-align: left;
+  }
+
+  thead{
+    display: none;
+  }
+
+  table tr td button{
+    display: block;
+    width: 50%;
+    margin: auto;
+  }
+}
+
+.crud-button-delete{
+  background-color: #cb0b0a;
+  border: 1px solid #cb0b0a;
+  color: #fff;
+  width: 50%;
+  border-top-right-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  
+}
+
+.crud-button-edit{
+  background-color: #212529;
+  border: 1px solid #212529;
+  color: #fff;
+  width: 50%;
+  border-top-left-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
+  
+}
+
+.crud-button-details{
+  width: 50%;
+  height: 100%;
+  background-color: #212529;
+  border: 1px solid #212529;
+  color: #fff;
+  border-radius: 2em;
+  
+}
+
+
+/**********************************************/
+

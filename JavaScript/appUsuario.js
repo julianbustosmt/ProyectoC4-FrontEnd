@@ -1,8 +1,7 @@
-
-
 const formulario = document.getElementById("form");
 const inputs = document.querySelectorAll("#form input");
-console.log(inputs);
+const resume_table = document.getElementById("resume_table");
+
 const urlbase = "http://localhost:8080/api/user";
 const urlprod = "http://132.145.103.244:8080/api/user";
 
@@ -22,6 +21,8 @@ const campos = {
     cellPhone: false,
     email: false,
     password: false,
+    type: false,
+    zone: false
 };
 
 const validarFormulario = (e) => {
@@ -59,7 +60,6 @@ const validarCampo = (expresion, input, campo) => {
         $(`#group-${campo} i`).addClass("fas fa-check-circle");
         $(`#group-${campo} .form-error`).removeClass("form-error-active");
         campos[campo] = true;
-        console.log(campos[campo]);
     } else {
         $(`#group-${campo}`).addClass("form-group-incorrecto");
         $(`#group-${campo}`).removeClass("form-group-correcto");
@@ -67,7 +67,6 @@ const validarCampo = (expresion, input, campo) => {
         $(`#group-${campo} i`).removeClass("fas fa-check-circle");
         $(`#group-${campo} .form-error`).addClass("form-error-active");
         campos[campo] = false;
-        console.log(campos[campo]);
     }
 };
 
@@ -92,10 +91,38 @@ const confirmarPassword = () => {
     }
 };
 
+const confirmarSelectType = () => {
+    const value = $("#slctype").val();
+    console.log(value);
+    console.log(typeof value);
+    if (value == "null") {
+        console.log("entro");
+        $("#group-type .form-error").addClass("form-error-active");
+    } else {
+        $(`#group-type .form-error`).removeClass("form-error-active");
+        campos["type"] = true;
+    }
+};
+
+const confirmarSelectZone = () => {
+    const value = $("#slczone").val();
+    console.log(value);
+    console.log(typeof value);
+    if (value == "null") {
+        console.log("entro");
+        $("#group-zone .form-error").addClass("form-error-active");
+    } else {
+        $(`#group-zone .form-error`).removeClass("form-error-active");
+    }
+    campos["zone"] = true;
+};
+
+
 inputs.forEach((input) => {
     input.addEventListener("keyup", validarFormulario);
     input.addEventListener("blur", validarFormulario);
 });
+
 
 const showToast = (toastheader, toastbody, toastsmall, error) => {
     $("#toast-header").html(toastheader);
@@ -112,78 +139,123 @@ const showToast = (toastheader, toastbody, toastsmall, error) => {
     $("#myToast").toast("show");
 };
 
-const registro = () => {
-    if (
-        campos.name &&
-        campos.password &&
-        campos.email &&
-        campos.identification &&
-        campos.address &&
-        campos.cellPhone
-    ) {
-        const identification = $("#txtidentification").val();
-        const name = $("#txtname").val();
-        const address = $("#txtaddress").val();
-        const cellphone = $("#txtcellPhone").val();
-        const email = $("#txtemail").val();
-        const password = $("#txtpassword").val();
-        const zone = $("#slczone").val();
-        const type = $("#slctype").val();
-
-        if (
-            identification === null ||
-            name === null ||
-            address === null ||
-            cellphone === null ||
-            email === null ||
-            password === null ||
-            zone === null ||
-            type === null
-        ) {
-            showToast("Error", "Campos vacios", "", true);
-        } else {
-            const data = {
-                identification: identification,
-                name: name,
-                address: address,
-                cellphone: cellphone,
-                email: email,
-                password: password,
-            };
-            $.ajax({
-                url: `${urlprod}/new`,
-                type: "POST",
-                dataType: "json",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                data: JSON.stringify(data),
-                statusCode: {
-                    201: function () {
-                        form.reset();
-                        document
-                            .querySelectorAll(".form-group-correcto")
-                            .forEach((icono) => {
-                                icono.classList.remove("form-group-correcto");
-                            });
-                        showToast(
-                            "Registro exitoso",
-                            "Su cuenta ha sido creada correctamente",
-                            "1 seg"
-                        );
-                        setTimeout(() => {
-                            window.location.href = "index.html";
-                        }, 5000);
-                    },
-                },
+const cargarTabla = () => {
+    $.ajax({
+        url:`${urlbase}/all`,
+        type:"GET",
+        dataType:"json",
+        success: function(response){
+            $("#user-table").empty();
+            response.forEach(element => {
+                var row = $("<tr>");
+                row.append($("<td data-titulo='ID:'>").text(element.identification));
+                row.append($("<td data-titulo='NOMBRE:'>").text(element.name));
+                row.append($("<td data-titulo='CELULAR:'>").text(element.cellPhone));
+                row.append($("<td data-titulo='TIPO:'>").text(element.type));
+                row.append($("<td data-titulo='ZONA:'>").text(element.zone));
+                row.append($("<td class='accion'>").append('<button type="button" class="crud-button-details" onclick="mostrarDetalles('+element.id+')"><span><i class="icon ion-md-folder lead"></i></sapan></button>'));
+                row.append($("<td class='accion'>").append('<button type="button" class="crud-button-edit" onclick="editCategory('+element.id+')"><span><i class="icon ion-md-create lead"></i></sapan></button><button type="button" class="crud-button-delete" onclick="borrarRegistro('+element.id+',\''+element.name+'\')"><span><i class="icon ion-md-trash lead"></i></sapan></button>'));
+                $("#user-table").append(row);
             });
-        }
-    } else {
-        showToast(
-            "Error",
-            "Por favor diligencia correctamente el formulario",
-            "Algo salio mal",
-            true
-        );
-    }
-};
+        },
+        error: function(xhr,status){
+            alert("Ocurrio un error en el consumo");
+        },
+    });
+}
+
+const registro = (emailexist) => {
+    emailexist = $("#txtemail").val();
+    $.ajax({
+        url: urlbase + "/emailexist/" + emailexist,
+        type: "GET",
+        dataType: "json",
+        success: (response) => {
+            if (response) {
+                showToast(
+                    "Error",
+                    "El correo ya existe",
+                    "Por favor ingrese otro correo",
+                    true
+                );
+            } else {
+                if (
+                    campos.name &&
+                    campos.password &&
+                    campos.email &&
+                    campos.identification &&
+                    campos.address &&
+                    campos.cellPhone &&
+                    campos.type &&
+                    campos.zone
+                ) {
+                    const data = {
+                        id: resume_table.rows.length,
+                        identification: identification = $("#txtidentification").val(),
+                        name: $("#txtname").val(),
+                        address: $("#txtaddress").val(),
+                        cellPhone: $("#txtcellPhone").val(),
+                        email: $("#txtemail").val(),
+                        password: $("#txtpassword").val(),
+                        zone: $("#slczone").val(),
+                        type: $("#slctype").val(),
+                    };
+                    $.ajax({
+                        url: `${urlbase}/new`,
+                        type: "POST",
+                        dataType: "json",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        data: JSON.stringify(data),
+                        statusCode: {
+                            201: function () {
+                                document
+                                    .querySelectorAll(".form-group-correcto")
+                                    .forEach((icono) => {
+                                        icono.classList.remove("form-group-correcto");
+                                    });
+                                showToast(
+                                    "Registro exitoso",
+                                    "El usuario se registro correctamente",
+                                    "1 seg"
+                                );
+                                formulario.reset();
+                                cargarTabla();
+                            },
+
+                        },
+                    });
+                } else {
+                    showToast(
+                        "Error",
+                        "Por favor diligencia correctamente el formulario",
+                        "Algo salio mal",
+                        true
+                    );
+                }
+
+            }
+        },
+    })
+}
+
+const borrarRegistro = (id) => {
+    $.ajax({
+        url: `${urlbase}/${id}`,
+        type: "DELETE",
+        dataType: "json",
+        success: (response) => {
+            showToast(
+                "Eliminado",
+                "El usuario se elimino correctamente",
+                "",true
+            );
+            cargarTabla();
+        },
+    });
+}
+
+$(document).ready(function () {
+    cargarTabla();
+})
