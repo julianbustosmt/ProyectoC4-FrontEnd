@@ -189,43 +189,56 @@ const registro = (emailexist) => {
                     campos.type &&
                     campos.zone
                 ) {
-                    const data = {
-                        id: resume_table.rows.length,
-                        identification: identification = $("#txtidentification").val(),
-                        name: $("#txtname").val(),
-                        address: $("#txtaddress").val(),
-                        cellPhone: $("#txtcellPhone").val(),
-                        email: $("#txtemail").val(),
-                        password: $("#txtpassword").val(),
-                        zone: $("#slczone").val(),
-                        type: $("#slctype").val(),
-                    };
-                    $.ajax({
-                        url: `${urlbase}/new`,
-                        type: "POST",
-                        dataType: "json",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        data: JSON.stringify(data),
-                        statusCode: {
-                            201: function () {
-                                document
-                                    .querySelectorAll(".form-group-correcto")
-                                    .forEach((icono) => {
-                                        icono.classList.remove("form-group-correcto");
-                                    });
-                                showToast(
-                                    "Registro exitoso",
-                                    "El usuario se registro correctamente",
-                                    "1 seg"
-                                );
-                                formulario.reset();
-                                cargarTabla();
+                        $.ajax({
+                            url:`${urlbase}/all`,
+                            type:"GET",
+                            dataType:"json",
+                            success: function(response){
+                                if(response.length == 0){
+                                    idMax = 0;
+                                }else{
+                                    idMax = Math.max(...response.map(element => element.id));
+                                }
+                                const data = {
+                                    id: idMax + 1,
+                                    identification: $("#txtidentification").val(),
+                                    name: $("#txtname").val(),
+                                    address: $("#txtaddress").val(),
+                                    cellPhone: $("#txtcellPhone").val(),
+                                    email: $("#txtemail").val(),
+                                    password: $("#txtpassword").val(),
+                                    zone: $("#slczone").val(),
+                                    type: $("#slctype").val(),
+                                };
+                                console.log(data);
+                                $.ajax({
+                                    url: `${urlbase}/new`,
+                                    type: "POST",
+                                    dataType: "json",
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                    },
+                                    data: JSON.stringify(data),
+                                    statusCode: {
+                                        201: function () {
+                                            document
+                                                .querySelectorAll(".form-group-correcto")
+                                                .forEach((icono) => {
+                                                    icono.classList.remove("form-group-correcto");
+                                                });
+                                            showToast(
+                                                "Registro exitoso",
+                                                "El usuario se registro correctamente",
+                                                "1 seg"
+                                            );
+                                            formulario.reset();
+                                            cargarTabla();
+                                        },
+            
+                                    },
+                                });
                             },
-
-                        },
-                    });
+                        });
                 } else {
                     showToast(
                         "Error",
@@ -234,7 +247,6 @@ const registro = (emailexist) => {
                         true
                     );
                 }
-
             }
         },
     })
@@ -258,4 +270,5 @@ const borrarRegistro = (id) => {
 
 $(document).ready(function () {
     cargarTabla();
+    generarId();
 })
