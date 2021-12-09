@@ -3,7 +3,7 @@ const inputs = document.querySelectorAll("#form input");
 const resume_table = document.getElementById("resume_table");
 
 const urlbase = "http://localhost:8080/api/user";
-const urlprod = "http://132.145.103.244:8080/api/user";
+const urlprod = "http://129.151.107.247:8080/api/user";
 
 const expresiones = {
     identification: /^.{6,10}$/, //  4 a 12 digitos.
@@ -141,7 +141,7 @@ const showToast = (toastheader, toastbody, toastsmall, error) => {
 
 const cargarTabla = () => {
     $.ajax({
-        url:`${urlbase}/all`,
+        url:`${urlprod}/all`,
         type:"GET",
         dataType:"json",
         success: function(response){
@@ -154,7 +154,7 @@ const cargarTabla = () => {
                 row.append($("<td data-titulo='TIPO:'>").text(element.type));
                 row.append($("<td data-titulo='ZONA:'>").text(element.zone));
                 row.append($("<td class='accion'>").append('<button type="button" class="crud-button-details" onclick="mostrarDetalles('+element.id+')"><span><i class="icon ion-md-folder lead"></i></sapan></button>'));
-                row.append($("<td class='accion'>").append('<button type="button" class="crud-button-edit" onclick="mostrarDetalles('+element.id+')"><span><i class="icon ion-md-create lead"></i></sapan></button><button type="button" class="crud-button-delete" onclick="borrarRegistro('+element.id+',\''+element.name+'\')"><span><i class="icon ion-md-trash lead"></i></sapan></button>'));
+                row.append($("<td class='accion'>").append('<button type="button" class="crud-button-edit" onclick="mostrarDetalles('+element.id+')"><span><i class="icon ion-md-create lead></i></sapan></button><button type="button" class="crud-button-delete" onclick="borrarRegistro('+element.id+',\''+element.name+'\')"><span><i class="icon ion-md-trash lead"></i></sapan></button>'));
                 $("#user-table").append(row);
             });
         },
@@ -167,15 +167,15 @@ const cargarTabla = () => {
 const registro = (emailexist) => {
     emailexist = $("#txtemail").val();
     $.ajax({
-        url: urlbase + "/emailexist/" + emailexist,
+        url: urlprod + "/emailexist/" + emailexist,
         type: "GET",
         dataType: "json",
         success: (response) => {
             if (response) {
                 showToast(
                     "Error",
-                    "Por favor ingrese otro correo",
                     "El correo ya existe",
+                    "Por favor ingrese otro correo",
                     true
                 );
             } else {
@@ -190,7 +190,7 @@ const registro = (emailexist) => {
                     campos.zone
                 ) {
                         $.ajax({
-                            url:`${urlbase}/all`,
+                            url:`${urlprod}/all`,
                             type:"GET",
                             dataType:"json",
                             success: function(response){
@@ -212,7 +212,7 @@ const registro = (emailexist) => {
                                 };
                                 console.log(data);
                                 $.ajax({
-                                    url: `${urlbase}/new`,
+                                    url: `${urlprod}/new`,
                                     type: "POST",
                                     dataType: "json",
                                     headers: {
@@ -254,7 +254,7 @@ const registro = (emailexist) => {
 
 const borrarRegistro = (id) => {
     $.ajax({
-        url: `${urlbase}/${id}`,
+        url: `${urlprod}/${id}`,
         type: "DELETE",
         dataType: "json",
         success: (response) => {
@@ -270,21 +270,18 @@ const borrarRegistro = (id) => {
 
 const mostrarDetalles = (id) => {
     $.ajax({
-        url: `${urlbase}/${id}`,
+        url: `${urlprod}/${id}`,
         type: "GET",
         dataType: "json",
         success: (response) => {
-            if(response.id =! null)
-            {id = response.id,
             $("#txtidentification").val(response.identification),
             $("#txtname").val(response.name),
             $("#txtaddress").val(response.address),
             $("#txtcellPhone").val(response.cellPhone),
             $("#txtemail").val(response.email),
             $("#txtpassword").val(response.password),
-            $("#txtconfpassword").val(response.password),
             $("#slczone").val(response.zone),
-            $("#slctype").val(response.type);}
+            $("#slctype").val(response.type);
         },
     });
 }
@@ -292,4 +289,3 @@ const mostrarDetalles = (id) => {
 $(document).ready(function () {
     cargarTabla();
 })
-

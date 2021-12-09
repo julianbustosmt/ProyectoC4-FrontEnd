@@ -194,6 +194,12 @@ table th, td{
   
 }
 
-
+.navbar-brand{
+  font-family: 'Staatliches', cursive;
+  color: #343a40;
+}
+.navbar-light .navbar-brand {
+  color: #343a40; 
+}
 /**********************************************/
 
