@@ -123,6 +123,12 @@ body {
 table th, td{
   text-align: center;
   font-size: 18px;
+  /*line-height: 70px;*/
+  vertical-align: middle;
+
+}
+table tbody img{
+  width: 70px;
 }
 
 @media (max-width: 55em) {
@@ -168,7 +174,7 @@ table th, td{
   background-color: #cb0b0a;
   border: 1px solid #cb0b0a;
   color: #fff;
-  width: 50%;
+  width: 40%;
   border-top-right-radius: 0.5em;
   border-bottom-right-radius: 0.5em;
   
@@ -178,14 +184,14 @@ table th, td{
   background-color: #212529;
   border: 1px solid #212529;
   color: #fff;
-  width: 50%;
+  width: 40%;
   border-top-left-radius: 0.5em;
   border-bottom-left-radius: 0.5em;
   
 }
 
 .crud-button-details{
-  width: 50%;
+  width: 40%;
   height: 100%;
   background-color: #212529;
   border: 1px solid #212529;
