@@ -76,7 +76,7 @@ const acceder = () => {
         console.log(password);
 
         $.ajax({
-            url: `${urlbase}/${email}/${password}`,
+            url: `${urlprod}/${email}/${password}`,
             type: "GET",
             dataType: 'json',
             headers: {

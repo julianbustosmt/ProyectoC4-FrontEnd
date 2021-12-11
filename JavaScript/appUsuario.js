@@ -182,7 +182,7 @@ const cargarTabla = () => {
 const registro = (emailexist) => {
     emailexist = $("#txtemail").val();
     $.ajax({
-        url: urluser + "/emailexist/" + emailexist,
+        url: urlprod + "/emailexist/" + emailexist,
         type: "GET",
         dataType: "json",
         success: (response) => {
@@ -205,7 +205,7 @@ const registro = (emailexist) => {
                     campos.zone
                 ) {
                     $.ajax({
-                        url: `${urluser}/all`,
+                        url: `${urlprod}/all`,
                         type: "GET",
                         dataType: "json",
                         success: function (response) {
@@ -226,7 +226,7 @@ const registro = (emailexist) => {
                                 type: $("#slctype").val(),
                             };
                             $.ajax({
-                                url: `${urluser}/new`,
+                                url: `${urlprod}/new`,
                                 type: "POST",
                                 dataType: "json",
                                 headers: {
@@ -268,7 +268,7 @@ const registro = (emailexist) => {
 
 const borrarRegistro = (id) => {
     $.ajax({
-        url: `${urluser}/${id}`,
+        url: `${urlprod}/${id}`,
         type: "DELETE",
         dataType: "json",
         success: (response) => {
@@ -284,7 +284,7 @@ const borrarRegistro = (id) => {
 
 const mostrarDetalles = (id) => {
     $.ajax({
-        url: `${urluser}/${id}`,
+        url: `${urlprod}/${id}`,
         type: "GET",
         dataType: "json",
         success: (response) => {
@@ -319,7 +319,7 @@ const actualizarUsuarios = () => {
         
     };
     $.ajax({
-        url: `${urluser}/update`,
+        url: `${urlprod}/update`,
         type: "PUT",
         dataType: "json",
         headers: {

@@ -113,7 +113,7 @@ const showToast = (toastheader, toastbody, toastsmall, error) => {
 
 const cargarTabla = () => {
     $.ajax({
-        url:`${urlbase}/all`,
+        url:`${urlprod}/all`,
         type:"GET",
         dataType:"json",
         success: function(response){
@@ -151,7 +151,7 @@ const registro = () => {
         campos.availability
     ) {
         $.ajax({
-        url:`${urlbase}/all`,
+        url:`${urlprod}/all`,
         type:"GET",
         dataType:"json",
         success: function(response){
@@ -173,7 +173,7 @@ const registro = () => {
         };
         console.log(data);
         $.ajax({
-            url: `${urlbase}/new`,
+            url: `${urlprod}/new`,
             type: "POST",
             dataType: "json",
             headers: {
@@ -205,7 +205,7 @@ const registro = () => {
 
 const borrarRegistro = (id) => {
     $.ajax({
-        url: `${urlbase}/${id}`,
+        url: `${urlprod}/${id}`,
         type: "DELETE",
         dataType: "json",
         success: (response) => {
@@ -221,7 +221,7 @@ const borrarRegistro = (id) => {
 
 const mostrarDetalles = (id) => {
     $.ajax({
-        url: `${urlbase}/${id}`,
+        url: `${urlprod}/${id}`,
         type: "GET",
         dataType: "json",
         success: (response) => {
@@ -257,7 +257,7 @@ const actualizarGatgets = () => {
         photography: $("#txtphotography").val(),
     };
             $.ajax({
-                url: `${urlbase}/update`,
+                url: `${urlprod}/update`,
                 type: "PUT",
                 dataType: "json",
                 headers: {
