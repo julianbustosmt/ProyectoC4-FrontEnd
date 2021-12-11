@@ -156,7 +156,7 @@ const showToast = (toastheader, toastbody, toastsmall, error) => {
 
 const cargarTabla = () => {
     $.ajax({
-        url: `${urluser}/all`,
+        url: `${urlprod}/all`,
         type: "GET",
         dataType: "json",
         success: function (response) {
