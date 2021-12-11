@@ -126,6 +126,7 @@ const cargarTabla = () => {
                 row.append($("<td data-titulo='DESCRIPCIÓN:'>").text(element.description));
                 row.append($("<td data-titulo='PRECIO:'>").text(element.price));
                 row.append($("<td data-titulo='DISPONIBILIDAD:'>").text(element.availability));
+                row.append($("<td data-titulo='DISPONIBILIDAD:'>").text(element.quantity));
                 row.append($("<td data-titulo='FOTO:'>").append($("<img>").attr("src", element.photography)));
                 row.append($("<td class='accion'>").append('<button type="button" class="crud-button-details" onclick="mostrarDetalles('+element.id+')"><span><i class="icon ion-md-folder lead"></i></sapan></button>'));
                 row.append($("<td class='accion'>").append('<button type="button" class="crud-button-edit" onclick="mostrarDetalles('+element.id+')"><span><i class="icon ion-md-create lead"></i></sapan></button><button type="button" class="crud-button-delete" onclick="borrarRegistro('+element.id+',\''+element.name+'\')"><span><i class="icon ion-md-trash lead"></i></sapan></button>'));

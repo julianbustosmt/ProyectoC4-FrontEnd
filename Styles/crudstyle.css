@@ -132,7 +132,7 @@ table tbody img{
   width: 70px;
 }
 
-@media (max-width: 55em) {
+@media (max-width: 71em) {
   table {
     width: 100%;
   }
