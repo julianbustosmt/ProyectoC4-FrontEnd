@@ -120,6 +120,7 @@ body {
 
 /**********************************************/
 /*****************Tabla usuarios***************/
+
 table th, td{
   text-align: center;
   font-size: 18px;
@@ -154,7 +155,7 @@ table tbody img{
 
   table td[data-titulo]::before{
     content: attr(data-titulo);
-    width: 80px;
+    width: 150px;
     font-weight: bold;
     text-align: left;
   }
@@ -166,7 +167,6 @@ table tbody img{
   table tr td button{
     display: block;
     width: 50%;
-    margin: auto;
   }
 }
 
@@ -177,6 +177,7 @@ table tbody img{
   width: 40%;
   border-top-right-radius: 0.5em;
   border-bottom-right-radius: 0.5em;
+  margin-right: auto;
   
 }
 
@@ -187,6 +188,7 @@ table tbody img{
   width: 40%;
   border-top-left-radius: 0.5em;
   border-bottom-left-radius: 0.5em;
+  margin-left: auto;
   
 }
 
@@ -197,6 +199,7 @@ table tbody img{
   border: 1px solid #212529;
   color: #fff;
   border-radius: 2em;
+  margin: auto;
   
 }
 

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
@@ -25,8 +25,8 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid ">
             <a class="navbar-brand" href=""><img src="../Imagen/Logo1.png" alt="El Mercader" width="60px">El Mercader
                 Technology</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -43,10 +43,10 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li>
-                                <a class="dropdown-item" href="usuarios.html">Resgistro</a>
+                                <a class="dropdown-item" href="#form">Resgistro</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="usuarios.html">Base de datos</a>
+                                <a class="dropdown-item" href="#resume_table">Base de datos</a>
                             </li>
                             <!--<li>
                                 <hr class="dropdown-divider">
@@ -182,8 +182,8 @@
                         <select class="col-12 control" name="slctype" id="slctype" onchange="confirmarSelectType()">
                             <option selected value="null">Seleccione un tipo</option>
                             <option value="ADM">Administrador</option>
-                            <option value="asesor">Asesor comercial</option>
-                            <option value="cordinador">Cordinador de zona</option>
+                            <option value="ASC">Asesor comercial</option>
+                            <option value="COD">Cordinador de zona</option>
                         </select>
                         <i class="far fa-times-circle"></i>
                     </div>
@@ -216,7 +216,7 @@
                 </table>
             </div>
         </div>
-        <div id="myToast" class="toast position-absolute position-fixed top-0 end-0" aria-live="assertive"
+        <div id="myToast" class="toast position-absolute position-fixed top-0 end-0 sticky-top" aria-live="assertive"
             aria-atomic="true" style="position: static">
             <div class="toast-header">
                 <img src="" class="rounded me-2" alt="" />

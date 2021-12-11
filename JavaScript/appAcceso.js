@@ -84,19 +84,37 @@ const acceder = () => {
             },
             success: function (response) {
                 console.log(response);
-                if (response.id !== null && response.type == "admin") {
-                    form.reset();
-                    document.querySelectorAll('.form-group-correcto').forEach((icono) => {
-                        icono.classList.remove('form-group-correcto');
-                    });
-                    showToast('BIENVENIDO!', 'En 1 segundo lo redireccionaremos', '1 seg');
-                    setTimeout(() => {
-                        window.location.href = 'html/usuario.html';
-                    }, 2000);
+                if (response.id !== null) {
+                    if(response.type === "ADM"){
+                        form.reset();
+                        document.querySelectorAll('.form-group-correcto').forEach((icono) => {
+                            icono.classList.remove('form-group-correcto');
+                        });
+                        showToast('BIENVENIDO!', 'En 1 segundo lo redireccionaremos', '1 seg');
+                        setTimeout(() => {
+                            window.location.href = '/../html/usuarios.html';
+                        }, 2000);
+                    } else if(response.type === "ASC"){
+                        form.reset();
+                        document.querySelectorAll('.form-group-correcto').forEach((icono) => {
+                            icono.classList.remove('form-group-correcto');
+                        });
+                        showToast('BIENVENIDO!', 'En 1 segundo lo redireccionaremos', '1 seg');
+                        setTimeout(() => {
+                            window.location.href = '#';
+                        }, 2000);
+                    } else if(response.type === "COD"){
+                        form.reset();
+                        document.querySelectorAll('.form-group-correcto').forEach((icono) => {
+                            icono.classList.remove('form-group-correcto');
+                        });
+                        showToast('BIENVENIDO!', 'En 1 segundo lo redireccionaremos', '1 seg');
+                        setTimeout(() => {
+                            window.location.href = '#';
+                        }, 2000);
+                    }         
                 } else {
                     showToast('Error', 'Usuario o contraseña no coinciden', 'Algo salio mal', true);
-                    setTimeout(() => {
-                    }, 2000);
                 }
             },
             error: function () {

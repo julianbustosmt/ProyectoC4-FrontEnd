@@ -121,7 +121,8 @@ const cargarTabla = () => {
             response.forEach(element => {
                 var row = $("<tr>");
                 row.append($("<td data-titulo='MARCA:'>").text(element.brand));
-                row.append($("<td data-titulo='NOMBRE:'style='width:10%'>").text(element.name));
+                row.append($("<td data-titulo='CATEGORIA:'>").text(element.category));
+                row.append($("<td data-titulo='NOMBRE:'>").text(element.name));
                 row.append($("<td data-titulo='DESCRIPCIÓN:'>").text(element.description));
                 row.append($("<td data-titulo='PRECIO:'>").text(element.price));
                 row.append($("<td data-titulo='DISPONIBILIDAD:'>").text(element.availability));
