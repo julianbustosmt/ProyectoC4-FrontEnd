@@ -9,7 +9,7 @@ const urlprod = "http://132.145.103.244:8080/api/user";
 
 const expresiones = {
     identification: /^.{6,10}$/, //  4 a 12 digitos.
-    name: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+    name: /^[a-zA-ZÀ-ÿ\s]{10,40}$/, // Letras y espacios, pueden llevar acentos.
     address: /^[a-zA-Z0-9\-\.\,\# ]{1,20}$/, // Letras, numeros, guion y guion_bajo
     cellphone: /^[0-9]{10}$/, // 11 digitos
     email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // Email

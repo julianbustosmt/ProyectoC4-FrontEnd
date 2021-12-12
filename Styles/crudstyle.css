@@ -11,12 +11,15 @@
   color: #212529;
   border-radius: 0px;
   font-family: "calibri";
-  min-height: 300px;
+  min-height: 400px;
 }
 
 .form-register h1 {
   font-size: 28px;
   font-weight: bold;
+}
+.orden{
+  padding-top: 20px;
 }
 
 body {
@@ -211,4 +214,18 @@ table tbody img{
   color: #343a40; 
 }
 /**********************************************/
+
+/**********************************************/
+/*****************Nav Bar***************/
+.user i {
+  font-size: 40px;
+  color: #343a40;
+  padding: 0px 20px 0px 10px; ;
+  
+}
+
+.navbar-text{
+  margin: auto;
+}
+
 
