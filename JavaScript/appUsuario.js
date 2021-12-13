@@ -9,7 +9,7 @@ const urlprod = "http://132.145.103.244:8080/api/user";
 
 const expresiones = {
     identification: /^.{6,10}$/, //  4 a 12 digitos.
-    name: /^[a-zA-ZÀ-ÿ\s]{10,40}$/, // Letras y espacios, pueden llevar acentos.
+    name: /^[a-zA-ZÀ-ÿ\s]{18,40}$/, // Letras y espacios, pueden llevar acentos.
     address: /^[a-zA-Z0-9\-\.\,\# ]{1,20}$/, // Letras, numeros, guion y guion_bajo
     cellphone: /^[0-9]{10}$/, // 11 digitos
     email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // Email
@@ -24,7 +24,8 @@ const campos = {
     email: false,
     password: false,
     type: false,
-    zone: false
+    zone: false,
+    monthBirthtDay: false,
 };
 
 const validarFormulario = (e) => {
@@ -72,6 +73,7 @@ const validarCampo = (expresion, input, campo) => {
     }
 };
 
+
 const confirmarPassword = () => {
     password1 = $("#txtpassword").val();
     password2 = $("#txtconfpassword").val();
@@ -90,6 +92,25 @@ const confirmarPassword = () => {
         $("#group-confpassword i").addClass("fas fa-check-circle");
         $("#group-confpassword .form-error").removeClass("form-error-active");
         campos["password"] = true;
+    }
+};
+
+const confirmarSelectmonthBirthtDay = () => {
+    const value = $("#slcmonthBirthtDay").val();
+    if (value == "null") {
+        $("#group-monthBirthtDay").addClass("form-group-incorrecto");
+        $("#group-monthBirthtDay").removeClass("form-group-correcto");
+        $("#group-monthBirthtDay i").addClass("far fa-times-circle");
+        $("#group-monthBirthtDay i").removeClass("fas fa-check-circle");
+        $("#group-monthBirthtDay .form-error").addClass("form-error-active");
+        campos["monthBirthtDay"] = false;
+    } else {
+        $("#group-monthBirthtDay").removeClass("form-group-incorrecto");
+        $("#group-monthBirthtDay").addClass("form-group-correcto");
+        $("#group-monthBirthtDay i").removeClass("far fa-times-circle");
+        $("#group-monthBirthtDay i").addClass("fas fa-check-circle");
+        $("#group-monthBirthtDay .form-error").removeClass("form-error-active");
+        campos["monthBirthtDay"] = true;
     }
 };
 
@@ -202,7 +223,8 @@ const registro = (emailexist) => {
                     campos.address &&
                     campos.cellPhone &&
                     campos.type &&
-                    campos.zone
+                    campos.zone &&
+                    campos.monthBirthtDay
                 ) {
                     $.ajax({
                         url: `${urlprod}/all`,
@@ -224,6 +246,8 @@ const registro = (emailexist) => {
                                 password: $("#txtpassword").val(),
                                 zone: $("#slczone").val(),
                                 type: $("#slctype").val(),
+                                birthtDay: $("#txtbirthtDay").val(),
+                                monthBirthtDay: $("#slcmonthBirthtDay").val(),
                             };
                             $.ajax({
                                 url: `${urlprod}/new`,
@@ -299,6 +323,8 @@ const mostrarDetalles = (id) => {
                     $("#txtconfpassword").val(response.password),
                     $("#slczone").val(response.zone),
                     $("#slctype").val(response.type);
+                    $("#txtbirthtDay").val(response.birthtDay.split("T")[0]),
+                    $("#slcmonthBirthtDay").val(response.monthBirthtDay);
             }
             console.log(response);
         },
@@ -316,6 +342,8 @@ const actualizarUsuarios = () => {
         password: $("#txtpassword").val(),
         zone: $("#slczone").val(),
         type: $("#slctype").val(),
+        birthtDay: $("#txtbirthtDay").val(),
+        monthBirthtDay: $("#slcmonthBirthtDay").val(),
         
     };
     $.ajax({

@@ -110,6 +110,40 @@
                     </p>
                 </div>
 
+                <div class="col-12 col-sm-6 col-lg-4 form-group" id="group-birthtDay">
+                    <div class="group-input">
+                        <label class="col-12 control-lb" for="txtbirthtDay">CUMPLEAÑOS</label>
+                        <input class="col-12 control" type="date" name="txtbirthtDay" id="txtbirthtDay" />
+                        <i class="far fa-times-circle"></i>
+                    </div>
+                    <p class="form-error">
+                        Por favor ingrese su fecha de nacimiento.
+                    </p>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-4 form-group" id="group-monthBirthtDay">
+                    <div class="group-input">
+                        <label class="col-12 control-lb" for="slcmonthBirthtDay">MES DE NACIMIENTO</label>
+                        <select class="col-12 control" name="slcmonthBirthtDay" id="slcmonthBirthtDay" onchange="confirmarSelectmonthBirthtDay()">
+                            <option selected value="null">Seleccione mes de nacimiento</option>
+                            <option value="1">Enero</option>
+                            <option value="2">Febreo</option>
+                            <option value="3">Marzo</option>
+                            <option value="4">Abril</option>
+                            <option value="5">Mayo</option>
+                            <option value="6">Junio</option>
+                            <option value="7">Julio</option>
+                            <option value="8">Agosto</option>
+                            <option value="9">Septiembre</option>
+                            <option value="10">Octubre</option>
+                            <option value="11">Noviembre</option>
+                            <option value="12">Diciembre</option>
+                        </select>
+                        <i class="far fa-times-circle"></i>
+                    </div>
+                    <p class="form-error">Por favor ingrese su mes de nacimiento.</p>
+                </div>
+
                 <div class="col-12 col-sm-6 col-lg-4 form-group" id="group-address">
                     <div class="group-input">
                         <label class="col-12 control-lb" for="txtaddress">DIRECCIÓN</label>
