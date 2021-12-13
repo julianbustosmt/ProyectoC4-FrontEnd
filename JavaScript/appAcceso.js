@@ -2,7 +2,7 @@
 const formulario = document.getElementById("form");
 const inputs = document.querySelectorAll("#form input");
 const urlbase = "http://localhost:8080/api/user";
-const urlprod = "http://132.145.103.244:8080/api/user"
+const urlprod = "http://129.151.107.247:8080/api/user"
 
 const expresiones = {
     usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
@@ -119,7 +119,7 @@ const acceder = () => {
                         });
                         showToast('BIENVENIDO!', 'En 1 segundo lo redireccionaremos', '1 seg');
                         setTimeout(() => {
-                            window.location.href = '#';
+                            window.location = 'html/revision.html';
                         }, 2000);
                     }
                 } else {

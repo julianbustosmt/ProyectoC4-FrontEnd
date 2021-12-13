@@ -5,7 +5,7 @@ const resume_table = document.getElementById("resume_table");
 let idBuscado = 0;
 
 const urluser = "http://localhost:8080/api/user";
-const urlprod = "http://132.145.103.244:8080/api/user";
+const urlprod = "http://129.151.107.247:8080/api/user";
 
 const expresiones = {
     identification: /^.{6,10}$/, //  4 a 12 digitos.
