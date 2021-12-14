@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +20,7 @@
     <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>Orden de pedido</title>
+    <title>Revisión de pedidos</title>
     <link rel="icon" type="image/png" href="../Imagen/El mercader_fondo blanco.png">
     <link rel="stylesheet" href="../Styles/crudstyle.css" />
 </head>
@@ -39,20 +40,17 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            Orden de pedidos
+                            Pedidos
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li>
-                                <a class="dropdown-item" href="#form">Agregar Producto</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#resume_table">Tu orden</a>
+                                <a class="dropdown-item" href="#resume_table">Ordenes por revisar</a>
                             </li>
                         </ul>
                     </li>
                 </ul>
 
-                <div class="user nav-item dropdown d-lg-flex d-none">
+                <div class="user nav-item dropdown me-4 d-flex">
                     <span class="navbar-text" id="nombrePerfil">
 
                     </span>
@@ -72,27 +70,19 @@
 
     <main class="container-fluid">
         <div class="form-register">
-            <h1>GENERAR ORDEN</h1>
-            <div class="button-group">
-                <button class="btn btn-dark" id="btn-register" onclick="buscarProductos()">
-                    Agregar Producto
-                </button>
-                <button class="btn btn-dark" id="btn-upload" onclick="guardar()">Guardar Orden</button>
-
-            </div>
             <div class="orden">
-                <h1 class="titulo">TU ORDEN</h1>
-                <table class="table" id="orden-table">
+                <h1 class="titulo">TABLA DE ORDENES</h1>
+                <table class="table" id="resume_table">
                     <thead class="table-dark">
                         <tr>
-                            <th>NOMBRE</th>
-                            <th>PRECIO</th>
-                            <th>FOTO</th>
-                            <th>CANTIDAD</th>
+                            <th>ID</th>
+                            <th>FECHA</th>
+                            <th>ASESOR</th>
+                            <th>DETALLE</th>
+                            <th>OPCIONES</th>
                         </tr>
                     </thead>
-                    <tbody id="pedido" >
-                    </tbody>
+                    <tbody id="ordenes-table"></tbody>
                 </table>
             </div>
         </div>
@@ -107,16 +97,24 @@
             </div>
             <div class="toast-body" id="toast-body"></div>
         </div>
-
-        <div class="modal" tabindex="-1" id="myModal">
-            <div class="modal-dialog modal-lg">
+        <!-- Modal -->
+        <div class="modal fade" id="modalpedido" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Buscar Producto</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <table class="table" id="resume_table">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>PRODUCTO</th>
+                                    <th>CANTIDAD</th>
+                                    <th>FOTO</th>
+                                    </tr>
+                            </thead>
+                            <tbody id="pedidos-table"></tbody>
+                        </table>
                     </div>
-                    <div class="modal-body" id="modal-body">
-
+                    <div class="modal-body">
+                        ...
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -124,26 +122,15 @@
                 </div>
             </div>
         </div>
-
-        <div class="modal" tabindex="-1" id="myModalQ">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body" id="modal-bodyQ">
-                        <input type="number" class="control" placeholder="Ingrese la cantidad deseada" id="cantidad">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="guardarCantidad()">Guardar</button>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        
+        <!--<div class="alert alert-warning d-flex align-items-center  position-absolute position-fixed top-0 end-0" role="alert" id="myAlert">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+              </svg>
+            <div id="alertBody"></div>
+        </div>-->
     </main>
 </body>
-<script src="../JavaScript/appOrden.js"></script>
+<script src="../JavaScript/appRevision.js"></script>
 
 </html>

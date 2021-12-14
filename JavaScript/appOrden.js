@@ -66,6 +66,7 @@ const buscarProductos = () => {
 
 const detalle = [];
 let productos = [];
+let cantidades = [];
 
 const llenarTablaProductos = (response) => {
     productos = response;
@@ -107,11 +108,21 @@ let tabla;
             <td data-titulo= 'NOMBRE:'>${detalle[i].name}</td>
             <td data-titulo= 'PRECIO:'>${detalle[i].price}</td>
             <td><img src="${detalle[i].photography}"></td>
-            <td data-titulo= 'CANTIDAD:'><input "id"="cantidad${i}" type="number"></td>
+            <td><button type="button" class="btn btn-dark id="cantidad" onclick="abrirModal()">Agregar cantidad</button></td>
             </tr>`;
     }
     console.log(tabla);
     $("#pedido").html(tabla);
+}
+
+const abrirModal = ()=>{
+    $("#myModalQ").modal('show');
+}
+
+const guardarCantidad = ()=>{
+    const quantitie = $("#cantidad").val();
+    cantidades.push(quantitie);
+    console.log(cantidades);
 }
 
 const guardar = ()=>{
@@ -139,13 +150,11 @@ const guardar = ()=>{
                 pedido.products[i+1] = detalle[i]; 
             }
 
-            for(let i = 0; i<detalle.length; i++){
-                cantidad = $("#cantidad"+i).val();
-                pedido.quantities[i+1] = cantidad ; 
-                console.log(cantidad);
+            for(let i = 0; i<cantidades.length; i++){
+                pedido.quantities[i+1] = cantidades[i];
             }
             console.log(pedido);
-
+            
             $.ajax({
                 url : `${urlorders}/new`,
                 type : 'POST',
