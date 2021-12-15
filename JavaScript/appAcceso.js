@@ -119,7 +119,7 @@ const acceder = () => {
                         });
                         showToast('BIENVENIDO!', 'En 1 segundo lo redireccionaremos', '1 seg');
                         setTimeout(() => {
-                            window.location.href = '#';
+                            window.location.href = '/../html/revision.html';
                         }, 2000);
                     }
                 } else {

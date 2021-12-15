@@ -27,6 +27,41 @@ const campos = {
     availability: false,
 };
 
+const mostrarUsuario = () => {
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    console.log(user);
+    if (user == null) {
+        alert("Necesita iniciar sesión");
+        setTimeout(() => {
+            window.location = '../index.html';
+        }, 500);
+    }
+    perfilGlobal = user;
+
+    const tipo = user.type === 'ASE' ? 'Asesor Comercial' :
+        user.type === 'COORD' ? 'Coordinador de Zona' : 'Administrador';
+
+    const nombre = user.name;
+
+    const perfil = `
+    <li class="dropdown-item">
+        ID: ${user.identification}
+    </li>
+    <li class="dropdown-item">
+        ${tipo}
+    </li >
+    <li class="dropdown-item">
+        ${user.email}
+    </li>
+    <li class="dropdown-item">
+        ${user.zone}
+    </li>
+    `
+    $('#perfil').html(perfil);
+    $(`#nombrePerfil`).html(nombre);
+    console.log(perfil)
+}
+
 const validarFormulario = (e) => {
     switch (e.target.name) {
         case "txtbrand":
@@ -286,4 +321,5 @@ const actualizarGatgets = () => {
 
 $(document).ready(function () {
     cargarTabla();
+    mostrarUsuario();
 })
