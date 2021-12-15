@@ -4,7 +4,7 @@ const resume_table = document.getElementById("resume_table");
 let idBuscado = 0;
 
 const urlbase = "http://localhost:8080/api/gadget";
-const urlprod = "http://132.145.103.244:8080/api/gadget";
+const urlprod = "http://129.151.107.247:8080/api/gadget";
 
 const expresiones = {
     brand: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
