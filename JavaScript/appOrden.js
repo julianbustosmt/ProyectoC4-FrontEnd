@@ -100,25 +100,42 @@ const llenarTablaProductos = (response) => {
     $("#myModal").modal('show');
 }
 
+let lista = [];
 const seleccionarProducto = (indexProducto) => {
-    detalle.push(productos[indexProducto]);
-    $("#myModal").modal('hide');
-    actualizarTablaPedido();
+    if (detalle.length == 0) {
+        lista.push(productos[indexProducto].id);
+        detalle.push(productos[indexProducto]);
+        $("#myModal").modal('hide');
+        actualizarTablaPedido();
+    } else {
+        if (!lista.includes(productos[indexProducto].id)) {
+            lista.push(productos[indexProducto].id);
+            detalle.push(productos[indexProducto]);
+            $("#myModal").modal('hide');}
+            actualizarTablaPedido();
+    }
 }
 
 const actualizarTablaPedido = () => {
     let tabla;
     for (let i = 0; i < detalle.length; i++) {
         tabla += `
-            <tr>
+            <tr id="fila${[i]}">
             <td data-titulo= 'NOMBRE:'>${detalle[i].name}</td>
             <td data-titulo= 'PRECIO:'>${detalle[i].price}</td>
             <td><img src="${detalle[i].photography}"></td>
             <td><button type="button" class="btn btn-dark id="cantidad" onclick="abrirModal()">Agregar cantidad</button></td>
+            <td><button type="button" class="btn btn-outline-danger" onclick="quitar('${[i]}')"><span><i class="icon ion-md-close"></i></sapan></button></td>
             </tr>`;
     }
     console.log(tabla);
     $("#pedido").html(tabla);
+}
+
+const quitar = (i) => {
+    $("#fila" + [i]).remove();
+    var ind = parseInt(i);
+    detalle.splice([ind], 1);
 }
 
 const abrirModal = () => {
@@ -130,7 +147,7 @@ const guardarCantidad = () => {
         const quantitie = $("#cantidad").val();
         cantidades.push(quantitie);
         showToast("Cantidad valida", "Se registrará", "");
-        $("#cantidad").val(""); 
+        $("#cantidad").val("");
     } else {
         showToast('Error', 'Ingrese un número, por favor', '', true);
     }
@@ -165,27 +182,28 @@ const guardar = () => {
                 pedido.quantities[i + 1] = cantidades[i];
             }
             console.log(pedido);
-            if(cantidades.length == document.getElementById("pedido").rows.length){
-            $.ajax({
-                url: `${urlorders}/new`,
-                type: 'POST',
-                dataType: 'json',
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                data: JSON.stringify(pedido),
-                statusCode: {
-                    201: function () {
-
-                        showToast(
-                            "Registro exitoso",
-                            "Su pedido se registro correctamente",
-                            ""
-                        );
-                        location.reload();
+            if (cantidades.length == document.getElementById("pedido").rows.length) {
+                $.ajax({
+                    url: `${urlorders}/new`,
+                    type: 'POST',
+                    dataType: 'json',
+                    headers: {
+                        "Content-Type": "application/json",
                     },
-                }
-            });}else{showToast('Error', 'Usted no ha ingresado cantidades', '', true);}
+                    data: JSON.stringify(pedido),
+                    statusCode: {
+                        201: function () {
+
+                            showToast(
+                                "Registro exitoso",
+                                "Su pedido se registro correctamente",
+                                ""
+                            );
+                            location.reload();
+                        },
+                    }
+                });
+            } else { showToast('Error', 'Usted no ha ingresado cantidades', '', true); }
         }
 
     });
