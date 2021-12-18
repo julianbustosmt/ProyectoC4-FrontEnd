@@ -95,7 +95,7 @@ const acceder = () => {
                         console.log(user);
                         sessionStorage.setItem("user", user);
                         setTimeout(() => {
-                            window.location.href = '/../html/usuarios.html';
+                            window.location.href = '../html/usuarios.html';
                         }, 2000);
                     } else if (response.type === "ASE") {
                         form.reset();
@@ -107,7 +107,7 @@ const acceder = () => {
                         console.log(user);
                         sessionStorage.setItem("user", user);
                         setTimeout(() => {
-                            window.location.href = '/../html/orden.html';
+                            window.location.href = '../html/orden.html';
                         }, 2000);
                     } else if (response.type === "COORD") {
                         form.reset();
@@ -119,7 +119,7 @@ const acceder = () => {
                         });
                         showToast('BIENVENIDO!', 'En 1 segundo lo redireccionaremos', '1 seg');
                         setTimeout(() => {
-                            window.location.href = '/../html/revision.html';
+                            window.location.href = '../html/revision.html';
                         }, 2000);
                     }
                 } else {
